@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+  },
+  "include": [
+    "server/**/*.ts",
+    "client/**/*.ts"
+  ]
+}
