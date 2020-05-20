@@ -7,11 +7,20 @@ import typescript from "rollup-plugin-typescript2";
 export default {
   input: ["./client/index.tsx"],
 
+  external: [
+    "react",
+    "react-dom"
+  ],
+
   output: {
     file: "./public/dist/bundle.js",
     name: "App",
     format: "iife",
     sourcemap: true,
+    globals: {
+      react: "React",
+      "react-dom": "ReactDOM",
+    }
   },
 
   plugins: [
@@ -20,7 +29,8 @@ export default {
     }),
 
     resolve({
-      browser: true
+      browser: true,
+      exclude: [""]
     }),
 
     commonjs({
