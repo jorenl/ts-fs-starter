@@ -18,7 +18,7 @@ export default {
     format: "iife",
     sourcemap: true,
     globals: {
-      react: "React",
+      "react": "React",
       "react-dom": "ReactDOM",
     }
   },
@@ -42,7 +42,7 @@ export default {
 
     babel({
       babelHelpers: 'bundled',
-      exclude: "node_modules/**"
+      exclude: "node_modules/**",
     }),
 
     typescript(),

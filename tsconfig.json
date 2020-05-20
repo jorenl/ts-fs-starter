@@ -2,7 +2,8 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "sourceMap": true,
   },
   "include": [
     "server/**/*.ts*",
