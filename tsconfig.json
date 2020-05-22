@@ -4,9 +4,7 @@
     "jsx": "react",
     "baseUrl": "./",
     "sourceMap": true,
+    "noImplicitAny": true
   },
-  "include": [
-    "server/**/*.ts*",
-    "client/**/*.ts*"
-  ]
+  "include": ["server/**/*.ts*", "client/**/*.ts*"]
 }
