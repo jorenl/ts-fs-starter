@@ -4,11 +4,12 @@ import expressWs from "express-ws";
 import path from "path";
 
 import { sharedData } from "shared";
+import { Message } from "shared/websocket/messages";
 
 const PORT = 3000;
 
 const app = express();
-const ws = expressWs(app);
+const ews = expressWs(app);
 
 app.use("/assets/", express.static(path.join(__dirname, "../public")));
 app.use("/modules/", express.static(path.join(__dirname, "../node_modules")));
@@ -18,6 +19,28 @@ app.get("/", (req, res) => {
 
 app.get("/test", (req, res) => {
   res.send(JSON.stringify(sharedData, null, 2));
+});
+
+ews.app.ws("/ws", (ws, req) => {
+  const server = ews.getWss();
+
+  function send(message: Message) {
+    ws.send(JSON.stringify(message));
+  }
+
+  ws.on("message", (message) => {
+    const data: Message = JSON.parse(message.toString());
+    console.log("Message received:", data);
+
+    if (data.type === "CHAT") {
+      server.clients.forEach((client) => {});
+      send({
+        type: "CHAT",
+        sender: "server",
+        text: `You said: ${data.text}`,
+      });
+    }
+  });
 });
 
 app.listen(PORT, () => {
