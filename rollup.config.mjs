@@ -1,16 +1,13 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
-import replace from "@rollup/plugin-replace"
+import replace from "@rollup/plugin-replace";
 import typescript from "rollup-plugin-typescript2";
 
 export default {
   input: ["./client/index.tsx"],
 
-  external: [
-    "react",
-    "react-dom"
-  ],
+  external: ["react", "react-dom"],
 
   output: {
     file: "./public/dist/bundle.js",
@@ -18,19 +15,22 @@ export default {
     format: "iife",
     sourcemap: true,
     globals: {
-      "react": "React",
+      react: "React",
       "react-dom": "ReactDOM",
-    }
+    },
   },
 
   plugins: [
     replace({
-      'process.env.NODE_ENV': JSON.stringify( 'development' )
+      values: {
+        "process.env.NODE_ENV": JSON.stringify("development"),
+      },
+      preventAssignment: false,
     }),
 
     resolve({
       browser: true,
-      exclude: [""]
+      exclude: [""],
     }),
 
     commonjs({
@@ -41,7 +41,7 @@ export default {
     }),
 
     babel({
-      babelHelpers: 'bundled',
+      babelHelpers: "bundled",
       exclude: "node_modules/**",
     }),
 
