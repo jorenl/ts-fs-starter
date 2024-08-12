@@ -3,7 +3,7 @@ import express from "express";
 import expressWs from "express-ws";
 import path from "path";
 
-import { sharedData } from "shared";
+import { sharedData } from "shared/index";
 
 const PORT = 3000;
 
